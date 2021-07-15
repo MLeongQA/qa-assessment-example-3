@@ -11,7 +11,16 @@
 # one(['tic', 'tac', 'toe']) → {'tic':1, 'tac':1, 'toe':1}
     
 def one(items):
-    pass
+    item_list = set(items)
+    frequency_list = []
+    for list_item in item_list:
+        count = 0
+        for item in items:
+            if list_item == item:
+                count += 1
+        frequency_list.append(count)
+    item_dict = dict(zip(item_list, frequency_list))
+    return item_dict
 
 # <QUESTION 2>
 
@@ -28,7 +37,15 @@ def one(items):
 # two(-5, 2, '/') → -2.5
 
 def two(a, b, operator):
-    pass
+
+    if operator == "+":
+        return a + b
+    elif operator == "-":
+        return a - b
+    elif operator == "*":
+        return a * b
+    else:
+        return a / b
 
 # <QUESTION 3>
 
@@ -48,7 +65,14 @@ def two(a, b, operator):
 # We can use `x ** 0.5` to get the square root of `x`
 
 def three(num):
-    pass
+    notFound = True
+    digit = num
+    while notFound == True:
+        if (digit ** 0.5).is_integer() == True:
+            return digit
+        else: 
+            digit -= 1
+
 
 # <QUESTION 4>
 
@@ -61,7 +85,10 @@ def three(num):
 # four(10, 50) → 10
 
 def four(a, b):
-    pass
+    if b == 0:
+        return a
+    else:
+        return four(b, a%b)
 
 # <QUESTION 5>
 
@@ -81,4 +108,19 @@ def four(a, b):
 # five('54321') → '54321'
 
 def five(string):
-    pass
+    alphabet = 'abcdefghijklmnopqrstuvwxyz'
+    alphabet_upper = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
+
+    alphabet_list = list(alphabet)
+    alphabet_list_upper = list(alphabet_upper)
+    final_string = ""
+    
+    for character in string:
+        if character in alphabet_list:
+            final_string += alphabet_list[alphabet_list.index(character)-1]
+        elif character in alphabet_list_upper:
+            final_string += alphabet_list_upper[alphabet_list_upper.index(character)-1]
+        else:
+            final_string += character
+            
+    return final_string
